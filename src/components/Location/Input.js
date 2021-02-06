@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-
+import React, { Component, Fragment } from 'react'
+import styled from 'styled-components'
 /**
  * Input component
  *
@@ -7,7 +7,18 @@ import React, { Component } from 'react'
  * @memberof Location
  */
 
- class Input extends Component {
+const LocationInput = styled.input`
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 0;
+
+  &:hover,
+  &:focus {
+    outline: 0;
+  }
+`
+
+class Input extends Component {
   /**
    * constructor
    * @param {object} props
@@ -19,7 +30,7 @@ import React, { Component } from 'react'
 
     }
 
-    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this)
   }
 
   handleOnChange(evt) {
@@ -28,20 +39,15 @@ import React, { Component } from 'react'
 
   render() {
     return (
-      <div>
-        <label
-          htmlFor="location"
-        >
-          Location
-        </label>
-        <input
+      <Fragment>
+        <LocationInput
           autoComplete="off"
           type="text"
           name="location"
-          id="location"
+          aria-label="location"
           onChange={this.handleOnChange}
         />
-      </div>
+      </Fragment>
     )
   }
 }

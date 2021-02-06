@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 /**
  * Measurements component
@@ -7,7 +8,12 @@ import React, { Component } from 'react'
  * @memberof Toggle
  */
 
- class Measurements extends Component {
+const Button = styled.button`
+  background: none;
+  border: none;
+`
+
+class Measurements extends Component {
   /**
    * constructor
    * @param {object} props
@@ -18,6 +24,8 @@ import React, { Component } from 'react'
     this.state = {
 
     }
+
+    this.handleOnChange = this.handleOnChange.bind(this)
   }
 
   handleOnChange(newUnit) {
@@ -26,20 +34,21 @@ import React, { Component } from 'react'
 
   render() {
     return (
-      <div>
-        <span>Change units between metric and imperial</span>
-        <button
+      <div aria-label="Change units between metric and imperial">
+        <Button
           disabled={this.props.unit === 'imperial' ? true : ''}
           onClick={() => { this.handleOnChange('imperial')}}
+          type="button"
         >
           Imperial
-        </button>
-        <button
+        </Button>
+        <Button
           disabled={this.props.unit === 'metric' ? true : ''}
           onClick={() => { this.handleOnChange('metric')}}
+          type="button"
         >
           Metric
-        </button>
+        </Button>
       </div>
     )
   }

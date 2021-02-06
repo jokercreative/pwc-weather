@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 import Location from 'Components/Location/Input'
 import Toggle from 'Components/Toggle/Measurements'
+
 /**
  * Weather component
  *
@@ -9,7 +11,17 @@ import Toggle from 'Components/Toggle/Measurements'
  * @memberof components
  */
 
- class Weather extends Component {
+const Wrapper = styled.div`
+  border: 1px solid #000;
+  padding: 20px;
+`
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+class Weather extends Component {
   /**
    * constructor
    * @param {object} props
@@ -30,12 +42,14 @@ import Toggle from 'Components/Toggle/Measurements'
 
   render() {
     return (
-      <div>
-        <Location />
-        <Toggle unit={this.state.unit} updateUnit={this.updateUnit}/>
+      <Wrapper>
+        <Header>
+          <Location />
+          <Toggle unit={this.state.unit} updateUnit={this.updateUnit}/>
+        </Header>
         current
         week forcast
-      </div>
+      </Wrapper>
     )
   }
 }
