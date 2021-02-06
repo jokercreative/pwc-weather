@@ -1,0 +1,271 @@
+# Default application configuration that all configurations inherit from.
+linters:
+  BorderZero:
+    enabled: true
+
+  CapitalizationInSelector:
+    enabled: false
+
+  ColorKeyword:
+    enabled: true
+
+  ColorVariable:
+    enabled: false
+
+  Comment:
+    enabled: false
+
+  DebugStatement:
+    enabled: true
+
+  DeclarationOrder:
+    enabled: true
+
+  DuplicateProperty:
+    enabled: false
+
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: true
+
+  EmptyRule:
+    enabled: false
+
+  FinalNewline:
+    enabled: true
+    present: true
+
+  HexFormat:
+    enabled: true
+
+  IdSelector:
+    enabled: false
+
+  IdWithExtraneousSelector:
+    enabled: true
+
+  ImportantRule:
+    enabled: false
+
+  Indentation:
+    enabled: true
+    allow_non_nested_indentation: false
+    character: space
+    width: 2
+
+  LeadingZero:
+    enabled: false
+
+  MergeableSelector:
+    enabled: true
+    force_nesting: true
+
+  NameFormat:
+    enabled: false
+
+  NestingDepth:
+    enabled: true
+    max_depth: 4
+    ignore_parent_selectors: true
+
+  PlaceholderInExtend:
+    enabled: true
+
+  PropertySortOrder:
+    enabled: true
+    order:
+      - display
+      - position
+      - top
+      - right
+      - bottom
+      - left
+      - z-index
+      - visibility
+      - overflow
+      - overflow-x
+      - overflow-y
+      - float
+      - clear
+      -
+      - flex
+      - flex-basis
+      - flex-direction
+      - flex-flow
+      - flex-grow
+      - flex-shrink
+      - flex-wrap
+      - align-content
+      - align-items
+      - align-self
+      - justify-content
+      - order
+      -
+      - table-layout
+      - border-collapse
+      - border-spacing
+      - empty-cells
+      - box-sizing
+      -
+      - width
+      - min-width
+      - max-width
+      -
+      - height
+      - min-height
+      - max-height
+      -
+      - margin
+      - margin-top
+      - margin-right
+      - margin-bottom
+      - margin-left
+      -
+      - padding
+      - padding-top
+      - padding-right
+      - padding-bottom
+      - padding-left
+      -
+      - border
+      - border-width
+      - border-style
+      - border-color
+      - border-radius
+      - border-top
+      - border-top-width
+      - border-top-style
+      - border-top-color
+      - border-right
+      - border-right-width
+      - border-right-style
+      - border-right-color
+      - border-bottom
+      - border-bottom-width
+      - border-bottom-style
+      - border-bottom-color
+      - border-left
+      - border-left-width
+      - border-left-style
+      - border-left-color
+      - border-top-right-radius
+      - border-top-left-radius
+      - border-bottom-right-radius
+      - border-bottom-left-radius
+      -
+      - outline
+      - outline-width
+      - outline-style
+      - outline-color
+      -
+      - background
+      - background-color
+      - background-image
+      - background-repeat
+      - background-attachment
+      - background-position
+      - background-size
+      - visibility
+      - opacity
+      -
+      - color
+      -
+      - font
+      - font-family
+      - font-size
+      - font-style
+      - font-variant
+      - font-weight
+      - letter-spacing
+      - line-height
+      - list-style
+      - list-style-type
+      - list-style-position
+      - list-style-image
+      -
+      - text-align
+      - text-decoration
+      - text-indent
+      - text-transform
+      - text-shadow
+      -
+      - white-space
+      - word-spacing
+      -
+      - cursor
+      - content
+      - animation
+      - transform
+      - transition
+      - box-shadow
+
+    ignore_unspecified: true
+
+  PropertySpelling:
+    enabled: true
+    extra_properties: ['*behavior']
+
+  PseudoElement:
+    enabled: false
+
+  QualifyingElement:
+    enabled: false
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 3
+
+  SelectorFormat:
+    enabled: true
+    convention: hyphenated_BEM
+
+  Shorthand:
+    enabled: true
+
+  SingleLinePerProperty:
+    enabled: false
+
+  SingleLinePerSelector:
+    enabled: true
+
+  SpaceAfterComma:
+    enabled: true
+
+  SpaceAfterPropertyColon:
+    enabled: true
+    allow_extra_spaces: false
+
+  SpaceAfterPropertyName:
+    enabled: true
+
+  SpaceBeforeBrace:
+    enabled: true
+    allow_single_line_padding: false
+
+  SpaceBetweenParens:
+    enabled: false
+
+  StringQuotes:
+    enabled: true
+    style: single_quotes # or double_quotes
+
+  TrailingSemicolonAfterPropertyValue:
+    enabled: true
+
+  UnnecessaryMantissa:
+    enabled: true
+
+  UrlFormat:
+    enabled: true
+
+  UrlQuotes:
+    enabled: true
+
+  VendorPrefix:
+    enabled: false
+
+  ZeroUnit:
+    enabled: true
+
+  ImportPath:
+    leading_underscore: true

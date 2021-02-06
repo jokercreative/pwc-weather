@@ -1,0 +1,64 @@
+############
+## Application Workspace files
+############
+*.sublime-project
+*.sublime-workspace
+.idea/*
+
+############
+## Project
+############
+
+############
+## Windows
+############
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+############
+## Mac
+############
+.DS_Store
+
+#############
+## Dependencies
+#############
+node_modules
+bower_components
+npm-debug.log
+
+#############
+## Distribution
+#############
+dist
+build
+
+#############
+## CSS Preprocessor
+#############
+.sass-cache
+*.css.map
+
+#############
+## Vendors
+#############
+src/assets/js/vendor/jquery.js
+
+#############
+## Icon Font
+#############
+src/assets/fonts/icons.*
+
+#############
+## Audio files
+#############
+src/assets/audio/*
+
+#############
+## Jest
+#############
+.jest-test-results.json
