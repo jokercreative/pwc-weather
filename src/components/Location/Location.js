@@ -3,11 +3,15 @@ import styled from 'styled-components'
 /**
  * Input component
  *
- * @namespace Input
+ * @namespace Location
  * @memberof Location
  */
 
-const LocationInput = styled.input`
+const Form = styled.form`
+
+`
+
+const Input = styled.input`
   border: none;
   border-bottom: 1px solid #000;
   padding: 0;
@@ -18,7 +22,7 @@ const LocationInput = styled.input`
   }
 `
 
-class Input extends Component {
+class Location extends Component {
   /**
    * constructor
    * @param {object} props
@@ -27,29 +31,47 @@ class Input extends Component {
     super(props);
 
     this.state = {
-
+      value: props.location
     }
 
+    console.log(props)
+
     this.handleOnChange = this.handleOnChange.bind(this)
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
   handleOnChange(evt) {
+    const {value} = evt.target
+    this.setState({ value })
+  }
 
+  handleFormSubmit(value) {
+    evt.preventDefault()
+    this.props.updateLocation(value)
   }
 
   render() {
+
+    const {
+      value
+    } = this.state
+
     return (
-      <Fragment>
-        <LocationInput
+      <Form
+        onSubmit={this.handleFormSubmit}
+        noValidate
+      >
+        <Input
           autoComplete="off"
           type="text"
           name="location"
           aria-label="location"
           onChange={this.handleOnChange}
+          value={value}
         />
-      </Fragment>
+      </Form>
     )
   }
 }
 
-export default Input
+export default Location
