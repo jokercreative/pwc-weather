@@ -34,8 +34,6 @@ class Location extends Component {
       value: props.location
     }
 
-    console.log(props)
-
     this.handleOnChange = this.handleOnChange.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
@@ -45,9 +43,9 @@ class Location extends Component {
     this.setState({ value })
   }
 
-  handleFormSubmit(value) {
+  handleFormSubmit(evt) {
     evt.preventDefault()
-    this.props.updateLocation(value)
+    this.props.updateLocation(this.state.value)
   }
 
   render() {
