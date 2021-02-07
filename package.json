@@ -11,6 +11,8 @@
   "author": "Jodie Walker",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
+    "date-fns": "^2.17.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
@@ -20,6 +22,7 @@
     "@babel/preset-react": "^7.12.13",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
+    "es6-promise": "^4.2.8",
     "html-webpack-plugin": "^5.0.0",
     "style-loader": "^2.0.0",
     "styled-components": "^5.2.1",
