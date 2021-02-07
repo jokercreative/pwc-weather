@@ -33,26 +33,37 @@ class Weather extends Component {
 
     this.state = {
       unit: 'metric',
-      location: 'Melbourne'
+      location: 'Melbourne',
+      coordinates: {
+        lon: '',
+        lat: ''
+      }
     }
 
     this.updateUnit = this.updateUnit.bind(this)
     this.updateLocation = this.updateLocation.bind(this)
+    this.updateCoordinates = this.updateCoordinates.bind(this)
   }
 
   updateUnit(unit) {
-    this.setState({unit})
+    this.setState({unit: unit})
   }
 
   updateLocation(location) {
-    this.setState({location})
+    this.setState({location: location})
+  }
+
+  updateCoordinates(coords) {
+    this.setState({coordinates: coords})
   }
 
   render() {
     const {
       unit,
-      location
+      location,
+      coordinates
     } = this.state
+
     return (
       <Wrapper>
         <Header>
@@ -61,17 +72,19 @@ class Weather extends Component {
             updateLocation={this.updateLocation}
           />
           <Toggle
-            unit
+            unit={unit}
             updateUnit={this.updateUnit}
           />
         </Header>
         <div>
           <CurrentForcast
             location={location}
+            updateCoordinates={this.updateCoordinates}
           />
         </div>
         <WeeklyForcast
           location={location}
+          coordinates={coordinates}
         />
       </Wrapper>
     )
