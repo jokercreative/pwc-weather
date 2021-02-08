@@ -87,6 +87,13 @@ const Input = styled.input`
     margin-top: 15px;
     font-size: 2.4rem;
   }
+
+  ::placeholder,
+  ::-webkit-input-placeholder,
+  :-ms-input-placeholder {
+    color: #AFBCC8;
+  }
+
 `
 
 export default Location
