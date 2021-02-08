@@ -23,12 +23,16 @@ class Weekly extends Component {
     }
   }
 
-  componentDidUpdate (prevProps, prevState) {
-    if (prevProps.coordinates !== this.props.coordinates) {
-      WeatherRepository.getForcast(this.props.coordinates)
+  componentDidUpdate (prevProps) {
+    if ((prevProps.coordinates !== this.props.coordinates) || (prevProps.unit !== this.props.unit)) {
+      WeatherRepository.getForcast({
+        coordinates: this.props.coordinates,
+        units: this.props.unit,
+        exclude: 'current,minutely,hourly,alerts'
+      })
         .then((response) => {
           this.setState({
-            forcast: response.daily
+            forcast: response.data.daily
           })
         })
     }

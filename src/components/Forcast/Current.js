@@ -33,23 +33,48 @@ class Current extends Component {
     this.convertWindSpeed = this.convertWindSpeed.bind(this)
   }
 
-  componentDidUpdate (prevProps, prevState) {
-    if (prevProps.location !== this.props.location) {
-      WeatherRepository.getCurrent(this.props.location)
+  componentDidMount () {
+    WeatherRepository.getCurrent({
+      location: this.props.location,
+      units: this.props.unit
+    })
+      .then((response) => {
+        this.setState({
+          date: response.data.dt,
+          weather: {
+            ...response.data.weather[0]
+          },
+          temperature: {
+            ...response.data.main,
+            current: response.data.main.temp
+          },
+          wind: response.data.wind
+        })
+
+        this.props.updateCoordinates(response.data.coord)
+      })
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.unit !== this.props.unit) {
+      WeatherRepository.getCurrent({
+        location: this.props.location,
+        units: this.props.unit
+      })
         .then((response) => {
           this.setState({
-            date: response.dt,
+            date: response.data.dt,
             weather: {
-              ...response.weather[0]
+              ...response.data.weather[0]
             },
             temperature: {
-              ...response.main,
-              current: response.main.temp
+              ...response.data.main,
+              current: response.data.main.temp
             },
-            wind: response.wind
+            wind: response.data.wind
           })
 
-          this.props.updateCoordinates(response.coord)
+          this.props.updateCoordinates(response.data.coord)
         })
     }
   }
@@ -69,7 +94,7 @@ class Current extends Component {
     const perHour = this.props.unit === "metric" ? speed * 3.6 : speed
     const speedUnit = this.props.unit === "metric" ? "kph" : "mph"
 
-    return `${perHour} ${speedUnit}`
+    return `${perHour.toFixed(2)} ${speedUnit}`
   }
 
   render() {

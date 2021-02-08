@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 
 import Location from 'Components/Location/Location'
@@ -83,18 +83,22 @@ class Weather extends Component {
             updateUnit={this.updateUnit}
           />
         </Header>
-        <div>
-          <CurrentForcast
-            unit={unit}
-            location={location}
-            updateCoordinates={this.updateCoordinates}
-          />
-        </div>
-        <WeeklyForcast
-          unit={unit}
-          location={location}
-          coordinates={coordinates}
-        />
+        {location &&
+          <Fragment>
+            <div>
+              <CurrentForcast
+                unit={unit}
+                location={location}
+                updateCoordinates={this.updateCoordinates}
+              />
+            </div>
+            <WeeklyForcast
+              unit={unit}
+              location={location}
+              coordinates={coordinates}
+            />
+          </Fragment>
+        }
       </Wrapper>
     )
   }

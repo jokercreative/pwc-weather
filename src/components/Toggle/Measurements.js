@@ -62,11 +62,15 @@ const Wrapper = styled.div`
 const Button = styled.button`
   background: none;
   border: none;
-  color: #cadbec;
+  color: #10c1ff;
+
+  &:disabled {
+    color: #cadbec;
+  }
 
   &:hover,
   &:focus {
-
+    text-decoration: underline;
   }
 `
 

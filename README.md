@@ -22,6 +22,7 @@ Features include:
 - Use Geolocation API to autopopulate based on users location
 - Add autocomplete and forward geocoding for location if user enters location manually
 - Add state management to remember previous entered location
+- Add loading states
 
 ## Getting started
 
