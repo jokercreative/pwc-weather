@@ -5,8 +5,6 @@ const resource = 'weather';
 
 export default {
   getCurrent(payload) {
-    console.log(payload)
-
     return new Promise((resolve) => {
       resolve({
         coord: { lon: 151.21, lat: -33.87 },
@@ -35,7 +33,7 @@ export default {
     // return api.get('weather', {
     //   params: {
     //     q: payload,
-    //     appid: `${process.env.APP_ENDPOINT}`,
+    //     appid: `${process.env.WEATHER_API_KEY}`,
     //   },
     // });
   },
@@ -187,7 +185,7 @@ export default {
     //     lon: payload,
     //     exclude: payload,
     //     units: payload,
-    //     appid: `${process.env.APP_ENDPOINT}`,
+    //     appid: `${process.env.WEATHER_API_KEY}`,
     //   },
     // });
   }

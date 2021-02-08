@@ -1,5 +1,6 @@
-const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   output: {
@@ -11,6 +12,7 @@ module.exports = {
     alias: {
       react: path.join(__dirname, 'node_modules', 'react'),
       'Components': path.resolve(__dirname, './', 'src/components'),
+      'Repositories': path.resolve(__dirname, './', 'src/repositories'),
     },
   },
   module: {
@@ -51,5 +53,6 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './src/index.html',
     }),
+    new Dotenv(),
   ],
 };
