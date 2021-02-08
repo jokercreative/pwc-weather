@@ -3,4 +3,7 @@ import { render } from 'react-dom';
 import './styles.css'
 import Weather from './components/Weather/Weather'
 
-render(<Weather />, document.getElementById('root'));
+render(
+  <Weather />,
+  document.getElementById('root')
+);

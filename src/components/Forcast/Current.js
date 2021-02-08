@@ -6,8 +6,18 @@ import fromUnixTime from 'date-fns/fromUnixTime'
 import {RepositoryFactory} from 'Repositories/RepositoryFactory';
 const WeatherRepository = RepositoryFactory.get('weather');
 
-class Current extends Component {
+/**
+ * Current component
+ *
+ * @namespace Current
+ * @memberof Forcast
+ */
 
+class Current extends Component {
+  /**
+   * constructor
+   * @param {object} props
+   */
   constructor(props) {
     super(props);
 
@@ -31,9 +41,23 @@ class Current extends Component {
     }
 
     this.convertWindSpeed = this.convertWindSpeed.bind(this)
+    this.fetchData = this.fetchData.bind(this)
   }
 
   componentDidMount () {
+    // Call API endpoint to receive weather based on location.
+    this.fetchData()
+  }
+
+  componentDidUpdate (prevProps) {
+    // If unit is updated, get new data
+    if (prevProps.unit !== this.props.unit) {
+      this.fetchData()
+    }
+  }
+
+  fetchData() {
+    // Using the repository to fetch the current forcast api. API doc can be found at https://openweathermap.org/current
     WeatherRepository.getCurrent({
       location: this.props.location,
       units: this.props.unit
@@ -55,41 +79,20 @@ class Current extends Component {
       })
   }
 
-  componentDidUpdate (prevProps) {
-    if (prevProps.unit !== this.props.unit) {
-      WeatherRepository.getCurrent({
-        location: this.props.location,
-        units: this.props.unit
-      })
-        .then((response) => {
-          this.setState({
-            date: response.data.dt,
-            weather: {
-              ...response.data.weather[0]
-            },
-            temperature: {
-              ...response.data.main,
-              current: response.data.main.temp
-            },
-            wind: response.data.wind
-          })
-
-          this.props.updateCoordinates(response.data.coord)
-        })
-    }
-  }
-
+  // create classname for icon based on weather description
   iconClass(desc) {
     if(!desc) return
     return `icon icon-${desc.toLowerCase()}`
   }
 
+  // get cardinal direction based on returned deg
   getCardinal(num) {
     var val = Math.floor((num / 22.5) + 0.5)
     var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
     return arr[(val % 16)]
   }
 
+  // convert the wind speed based on prefered unit
   convertWindSpeed(speed) {
     const perHour = this.props.unit === "metric" ? speed * 3.6 : speed
     const speedUnit = this.props.unit === "metric" ? "kph" : "mph"
@@ -135,6 +138,9 @@ class Current extends Component {
   }
 }
 
+/**
+ * Component specific styling
+ */
 
 const Wrapper = styled.div`
   margin: 20px 0 30px;

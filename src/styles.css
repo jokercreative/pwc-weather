@@ -27,6 +27,7 @@ body > div { font-size: 1.4rem; }
   }
 }
 
+/* Make element only visible to screenreaders */
 .sr-only {
   position: absolute;
   overflow: hidden;
@@ -47,6 +48,8 @@ body > div { font-size: 1.4rem; }
   margin: 0;
   clip: auto
 }
+
+/* Icon font used for weather icons */
 
 @font-face {
   font-family: 'WeatherIcons';

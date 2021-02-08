@@ -16,9 +16,7 @@ class Measurements extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-
-    }
+    this.state = {}
 
     this.handleOnChange = this.handleOnChange.bind(this)
   }

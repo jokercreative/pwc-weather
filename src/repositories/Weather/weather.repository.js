@@ -1,6 +1,8 @@
 import Respository from '../Repository';
 const api = Respository.weather;
 
+// List of API endpoints available for weather forcasts based on https://openweathermap.org/
+
 export default {
   getCurrent(payload) {
     return api.get('weather', {

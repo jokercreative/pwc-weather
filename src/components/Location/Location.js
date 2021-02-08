@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
+
 /**
- * Input component
+ * Location Input component
  *
  * @namespace Location
  * @memberof Location
@@ -23,12 +24,14 @@ class Location extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
+  // if location is changed, clear location from app
   handleOnChange(evt) {
     const {value} = evt.target
     this.setState({ value })
     this.props.updateLocation('')
   }
 
+  // update location in parent component
   handleFormSubmit(evt) {
     evt.preventDefault()
     this.props.updateLocation(this.state.value)
@@ -58,6 +61,10 @@ class Location extends Component {
     )
   }
 }
+
+/**
+ * Component specific styling
+ */
 
 const Input = styled.input`
   border: none;

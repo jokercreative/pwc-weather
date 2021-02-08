@@ -5,13 +5,12 @@ import DailyForcast from './Daily'
 import {RepositoryFactory} from 'Repositories/RepositoryFactory';
 const WeatherRepository = RepositoryFactory.get('weather');
 
-const Forcast = styled.div `
-  display: flex;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`
+/**
+ * Weekly component
+ *
+ * @namespace Weekly
+ * @memberof Forcast
+ */
 
 class Weekly extends Component {
 
@@ -24,6 +23,8 @@ class Weekly extends Component {
   }
 
   componentDidUpdate (prevProps) {
+    // Call API endpoint to receive weather based on coordinates or if units change.
+    // API doc can be found at https://openweathermap.org/api/one-call-api
     if ((prevProps.coordinates !== this.props.coordinates) || (prevProps.unit !== this.props.unit)) {
       WeatherRepository.getForcast({
         coordinates: this.props.coordinates,
@@ -56,5 +57,17 @@ class Weekly extends Component {
     )
   }
 }
+
+/**
+ * Component specific styling
+ */
+
+const Forcast = styled.div `
+  display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`
 
 export default Weekly
