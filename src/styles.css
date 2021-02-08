@@ -1,7 +1,30 @@
 @import 'normalize.css/normalize';
 
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*:last-child { margin-bottom: 0; }
+
+html {
+  height: 100%;
+  font-size: 10px;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+}
+
+body > div { font-size: 1.4rem; }
+
+@media (max-width: 768px) {
+  body,
+  body > div {
+    font-size: 1.2rem;
+  }
 }
 
 .sr-only {

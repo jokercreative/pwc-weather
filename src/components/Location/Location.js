@@ -7,18 +7,26 @@ import styled from 'styled-components'
  * @memberof Location
  */
 
-const Form = styled.form`
-
-`
-
 const Input = styled.input`
   border: none;
-  border-bottom: 1px solid #000;
+  background: transparent;
+  border-bottom: 2px solid #cadbec;
   padding: 0;
+  font-weight: bold;
+  font-size: 2.8rem;
+  padding-bottom: 5px;
+  width: 100%;
+  color: #cadbec;
+  transition: border 150ms ease-out;
 
-  &:hover,
   &:focus {
     outline: 0;
+    border-bottom: 2px solid #10c1ff;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 15px;
+    font-size: 2.4rem;
   }
 `
 
@@ -55,7 +63,7 @@ class Location extends Component {
     } = this.state
 
     return (
-      <Form
+      <form
         onSubmit={this.handleFormSubmit}
         noValidate
       >
@@ -67,7 +75,7 @@ class Location extends Component {
           onChange={this.handleOnChange}
           value={value}
         />
-      </Form>
+      </form>
     )
   }
 }

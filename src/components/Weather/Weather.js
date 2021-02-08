@@ -16,11 +16,18 @@ import WeeklyForcast from 'Components/Forcast/Weekly'
 const Wrapper = styled.div`
   border: 1px solid #000;
   padding: 20px;
+  margin: 20px;
+  background: #223344;
+  color: #cadbec;
 `
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
 `
 
 class Weather extends Component {
@@ -78,11 +85,13 @@ class Weather extends Component {
         </Header>
         <div>
           <CurrentForcast
+            unit={unit}
             location={location}
             updateCoordinates={this.updateCoordinates}
           />
         </div>
         <WeeklyForcast
+          unit={unit}
           location={location}
           coordinates={coordinates}
         />

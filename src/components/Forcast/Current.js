@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import styled from 'styled-components'
+import { format } from 'date-fns'
+import fromUnixTime from 'date-fns/fromUnixTime'
 
 import {RepositoryFactory} from 'Repositories/RepositoryFactory';
 const WeatherRepository = RepositoryFactory.get('weather');
@@ -9,6 +12,7 @@ class Current extends Component {
     super(props);
 
     this.state = {
+      date: '',
       weather: {
         description: '',
         icon: ''
@@ -25,6 +29,8 @@ class Current extends Component {
         deg: ''
       }
     }
+
+    this.convertWindSpeed = this.convertWindSpeed.bind(this)
   }
 
   componentDidUpdate (prevProps, prevState) {
@@ -32,6 +38,7 @@ class Current extends Component {
       WeatherRepository.getCurrent(this.props.location)
         .then((response) => {
           this.setState({
+            date: response.dt,
             weather: {
               ...response.weather[0]
             },
@@ -52,25 +59,116 @@ class Current extends Component {
     return `icon icon-${desc.toLowerCase()}`
   }
 
+  getCardinal(num) {
+    var val = Math.floor((num / 22.5) + 0.5)
+    var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+    return arr[(val % 16)]
+  }
+
+  convertWindSpeed(speed) {
+    const perHour = this.props.unit === "metric" ? speed * 3.6 : speed
+    const speedUnit = this.props.unit === "metric" ? "kph" : "mph"
+
+    return `${perHour} ${speedUnit}`
+  }
+
   render() {
 
     const {
       weather,
       temperature,
-      wind
+      wind,
+      date
     } = this.state
 
     return (
-      <Fragment>
-        <span>Description {weather.main}</span>
-        <i className={this.iconClass(weather.main)}></i>
-        <span>current {temperature.current}</span>
-        <span>humidity {temperature.humidity}</span>
-        <span>wind speed {wind.speed}</span>
-        <span>wind deg {wind.deg}</span>
-      </Fragment>
+      <Wrapper>
+        <Date>{format(fromUnixTime(date), 'EEEE, MMMM do')}</Date>
+        <ForcastWrapper>
+          <div>
+            <Temperature>{temperature.current}&deg;</Temperature>
+            <Description>{weather.main}</Description>
+          </div>
+
+          <div>
+            <Icon>
+              <i className={this.iconClass(weather.main)}></i>
+              <span className="sr-only">{weather.description}</span>
+            </Icon>
+          </div>
+
+          <div>
+            <List>
+              <ListItem>Feels like: <b>{temperature.feels_like}&deg;</b></ListItem>
+              <ListItem>Humidity: <b>{temperature.humidity}%</b></ListItem>
+              <ListItem>Wind: <b>{this.convertWindSpeed(wind.speed)} {this.getCardinal(wind.deg)}</b></ListItem>
+            </List>
+          </div>
+        </ForcastWrapper>
+      </Wrapper>
     )
   }
 }
+
+
+const Wrapper = styled.div`
+  margin: 20px 0 30px;
+`
+
+const ForcastWrapper = styled.div`
+  display: flex;
+
+  > div + div {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    > div + div {
+      margin-left: 0;
+      margin-top: 15px;
+    }
+  }
+`
+
+const Date = styled.p`
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+`
+
+const Temperature = styled.h2`
+  font-size: 4rem;
+  margin: 0 0 5px;
+`
+
+const Description = styled.p`
+  font-size: 2rem;
+  margin: 0;
+`
+
+const List = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`
+
+const ListItem = styled.li`
+  margin: 0;
+  padding: 0;
+
+  + li {
+    margin-top: 5px;
+  }
+`
+
+const Icon = styled.span`
+  i {
+    font-size: 8rem;
+    color: #10c1ff;
+  }
+`
 
 export default Current

@@ -8,11 +8,6 @@ import styled from 'styled-components'
  * @memberof Toggle
  */
 
-const Button = styled.button`
-  background: none;
-  border: none;
-`
-
 class Measurements extends Component {
   /**
    * constructor
@@ -34,7 +29,14 @@ class Measurements extends Component {
 
   render() {
     return (
-      <div aria-label="Change units between metric and imperial">
+      <Wrapper aria-label="Change units between metric and imperial">
+        <Button
+          disabled={this.props.unit === 'metric' ? true : ''}
+          onClick={() => { this.handleOnChange('metric')}}
+          type="button"
+        >
+          Metric
+        </Button> |
         <Button
           disabled={this.props.unit === 'imperial' ? true : ''}
           onClick={() => { this.handleOnChange('imperial')}}
@@ -42,16 +44,30 @@ class Measurements extends Component {
         >
           Imperial
         </Button>
-        <Button
-          disabled={this.props.unit === 'metric' ? true : ''}
-          onClick={() => { this.handleOnChange('metric')}}
-          type="button"
-        >
-          Metric
-        </Button>
-      </div>
+      </Wrapper>
     )
   }
 }
+
+/**
+ * Component specific styling
+ */
+
+const Wrapper = styled.div`
+  @media (max-width: 768px) {
+    text-align: right;
+  }
+`
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  color: #cadbec;
+
+  &:hover,
+  &:focus {
+
+  }
+`
 
 export default Measurements
