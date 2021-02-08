@@ -40,7 +40,7 @@ class Weather extends Component {
 
     this.state = {
       unit: 'metric',
-      location: 'Melbourne',
+      location: '',
       coordinates: {
         lon: '',
         lat: ''

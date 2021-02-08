@@ -72,6 +72,7 @@ class Location extends Component {
           type="text"
           name="location"
           aria-label="location"
+          placeholder="Enter location"
           onChange={this.handleOnChange}
           value={value}
         />
