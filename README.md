@@ -12,7 +12,7 @@ Features include:
 
 ## Package Versions
 
- - **NPM** - v14.14.4
+ - **NPM** - v14.15.4
  - **Webpack** - v4
  - **Babel** - v7
  - **React** - v17
