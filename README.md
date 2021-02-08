@@ -23,6 +23,7 @@ Features include:
 - Add autocomplete and forward geocoding for location if user enters location manually
 - Add state management to remember previous entered location
 - Add loading states
+- More unit test coverage
 
 ## Getting started
 
