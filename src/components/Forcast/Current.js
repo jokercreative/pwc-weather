@@ -49,7 +49,7 @@ class Current extends Component {
 
   iconClass(desc) {
     if(!desc) return
-    return `icon icon--${desc.toLowerCase()}`
+    return `icon icon-${desc.toLowerCase()}`
   }
 
   render() {

@@ -23,7 +23,7 @@ class Daily extends Component {
   }
 
   iconClass(desc) {
-    return `icon icon--${desc.toLowerCase()}`
+    return `icon icon-${desc.toLowerCase()}`
   }
 
   render() {
